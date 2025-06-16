@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Một chút kỉ niệm đẹp</title>
+  <title>Một Chút Kỉ Niệm Đẹp</title>
+  <link rel="icon" href="icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -17,7 +15,6 @@
       background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
       background-size: 600% 600%;
       animation: gradientBG 15s ease infinite;
-
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -25,13 +22,11 @@
       overflow-x: hidden;
       overflow-y: auto;
     }
-
     @keyframes gradientBG {
       0% {background-position: 0% 50%;}
       50% {background-position: 100% 50%;}
       100% {background-position: 0% 50%;}
     }
-
     .card {
       background: white;
       padding: 30px 20px;
@@ -42,12 +37,10 @@
       text-align: left;
       animation: fadeIn 2s ease-out;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 30px;
@@ -56,12 +49,24 @@
       margin-bottom: 20px;
       animation: pulse 2s infinite;
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
     }
-
+    #contact-info{
+      margin-top: 16px;
+    }
+    .contact{
+      text-align: justify;
+      text-indent: 1em;
+      font-size: 20px;
+      color: #333;
+      line-height: 1.8;
+      margin: 0;
+    }
+    .contact > a{
+      text-decoration: none;
+    }
     .tri-an {
       text-align: justify;
       text-indent: 1em;
@@ -70,40 +75,29 @@
       line-height: 1.8;
       margin: 0;
     }
-
     .tri-an::after {
       content: '|';
       animation: blink 0.7s infinite;
       font-weight: bold;
       color: #e91e63;
     }
-
     @keyframes blink {
       0%   { opacity: 1; }
       50%  { opacity: 0; }
       100% { opacity: 1; }
     }
-
     .sparkle {
       position: absolute;
       width: 4px;
       height: 4px;
       background: white;
       border-radius: 50%;
-      animation: sparkle 5s linear infinite;
+      animation: sparkle 3s linear infinite;
     }
-
     @keyframes sparkle {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) scale(0.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
     }
-
     .image-gallery {
       display: flex;
       justify-content: center;
@@ -111,7 +105,6 @@
       flex-wrap: wrap;
       margin-top: 20px;
     }
-
     .image-gallery img {
       flex: 1 1 calc(50% - 12px);
       max-width: calc(50% - 12px);
@@ -125,35 +118,26 @@
       transform: translateY(40px);
       animation: fadeInUp 1s ease-out forwards;
     }
-
     .image-gallery img:hover {
       transform: scale(1.05);
     }
-
     @keyframes fadeInUp {
       0% { opacity: 0; transform: translateY(40px); }
       100% { opacity: 1; transform: translateY(0); }
     }
-
-    /* Form đăng nhập */
-    .login-container {
-      text-align: center;
-    }
-
+    .login-container { text-align: center; }
     #login-form {
       display: flex;
       flex-direction: column;
       gap: 12px;
       margin-bottom: 20px;
     }
-
     input[type="text"] {
       padding: 10px;
       font-size: 16px;
       border: 2px solid #e91e63;
       border-radius: 8px;
     }
-
     button {
       padding: 10px;
       background-color: #e91e63;
@@ -163,12 +147,10 @@
       font-size: 16px;
       cursor: pointer;
     }
+    button:hover { background-color: #c2185b; }
+    #main-content { display: none; }
 
-    button:hover {
-      background-color: #c2185b;
-    }
-
-    #main-content {
+    #contact-info {
       display: none;
     }
   </style>
@@ -177,8 +159,8 @@
 
   <div class="card">
     <div id="login-section" class="login-container">
-      <h2>Cho xin cái tên 😎</h2>
-      <form id="login-form">
+      <form id="login-form" autocomplete="off">
+        <h2>Cho xin cái tên 😎</h2>
         <input type="text" id="username" placeholder="Nhập tên... (Thanh Hải)" required>
         <button type="submit">Đọc thư</button>
       </form>
@@ -188,14 +170,19 @@
       <h1 id="greeting-title">Thân gửi ...</h1>
       <p class="tri-an" id="typewriter-text"></p>
       <div class="image-gallery" id="image-gallery" style="display: none;">
-        <img src="embe1.jpg" alt="Ảnh kỷ niệm 1">
-        <img src="embe2.jpg" alt="Ảnh kỷ niệm 2">
+        <img src="default1.jpg" alt="Ảnh kỷ niệm 1">
+        <img src="default2.jpg" alt="Ảnh kỷ niệm 2">
+      </div>
+      <div id="contact-info" style="display: none;">
+        <p class="contact">Số điện thoại: 0964534251</p>
+        <p class="contact">Facebook: <a href="https://www.facebook.com/ThanhHaiSiuCute/" target="_blank">Thanh Hải</a></p>
+        <p class="contact">Instagram: <a href="https://www.instagram.com/_iamthanhhaii_07/" target="_blank">_iamthanhhaii_07</a></p>
       </div>
     </div>
   </div>
 
-  <!-- Hiệu ứng lấp lánh -->
   <script>
+    // Lấp lánh
     for (let i = 0; i < 60; i++) {
       const sparkle = document.createElement('div');
       sparkle.classList.add('sparkle');
@@ -205,11 +192,29 @@
       document.body.appendChild(sparkle);
     }
 
-    const content = `Cảm ơn bạn vì đã luôn! 🌸💖`;
+    // Cấu hình dữ liệu theo tên
+    const nameToPrefix = {
+      "Thành Tài": "tai",
+      "Thu Hằng": "hang",
+      "em bé": "embe"
+    };
+
+    const nameToContent = {
+      "Thành Tài": "Sau khoảng 10 tháng cùng nhau học, cùng cười, cùng với 'bộ tứ bàn dưới' chinh chiến qua các bài tập thì sắp tới cũng là lúc mỗi người một nơi. Có thể t với m khác trường nhưng nên nhớ lúc nào cần thì cứ nhắn, tuy rep lâu nhưng mà t sẽ cố gắng giúp tới cùng 😎. Sắp tới chúc m thi thật tốt để lụm học bổng đỡ phần nào học phí, chúc m luôn năng lượng và vui vẻ như thời cấp 3 nha!✨. Đây có lẽ là 2 tấm hình đầu tiên và duy nhất của t với m luôn quá nếu sau này có cần hợp tác thì chứ liên hệ t nghen🫡",
+      "Thu Hằng": "Mới ngày nào vừa giỡn chung với Đại Phong, chọc m cả tiết, hết chọc thì tới hỏi bài cứ thế mà nhanh thiệt, chưa thì sắp đến thời điểm phải chiến đấu với 'kỳ thi khó khăn nhất thời học sinh' rồi. Nhưng mà dù sao vẫn cảm ơn m đã là một phần kí ức đẹp trong khoảng thời gian lớp 12 này cùng với đó là 'cuộc đua' điểm toán cũng giúp t đỡ lười hơn 🥹. Chóc m sắp tới thi thật thành công, đạt đủ và vượt chỉ tiêu để đậu nguyện vọng mơ ước nha, chúc m luôn giữ được năng lượng ngây thơ, hồn nhiên ở thời cấp 3 này. Và đây la 2 tấm hình chắc đầu tiên mà t vs m chụp luôn quá nhưng mà nhìn lại thấy vui ha, mong là sau này m nhìn vào vẫn thấy vui như bây giờ!😎",
+      "em bé": "Tính ra là cũng gần 2 năm trong quãng thời gian cấp 3 này em đã đồng hành cùng anh đi qua, anh cảm ơn em đã là chỗ dựa tinh thần cũng như là nơi mà anh có thể chia sẻ những niềm vui, hạnh phúc và nỗi buồn của anh cho em nghe và em thấu hiểu anh hơn. Thật sự em đã làm cho cấp 3 của anh thêm màu sắc hơn và cho anh có một kí ức thời cấp 3 thanh xuân vườn trường như những gì anh mơ ước ✨. Cảm ơn em vì đã giúp anh ăn sáng điều độ và cảm ơn em đã giúp anh học được nhiều bài học hay trong cuộc sống. Cảm ơn em đã cho anh biết được thế nào là yêu và được yêu, anh yêu em. Mong là không chỉ thời học sinh mà sinh viên hay trở thành một ông chú 30, 40, ... thì em vẫn ở bên anh đến hết quãng đời về sau. Anh thương em~💕"
+    };
+
+    const allowedNames = Object.keys(nameToPrefix);
+
     const textElement = document.getElementById("typewriter-text");
     const imageGallery = document.getElementById("image-gallery");
+    const greetingTitle = document.getElementById("greeting-title");
+    const loginSection = document.getElementById("login-section");
+    const mainContent = document.getElementById("main-content");
 
     let index = 0;
+    let content = "";
 
     function typeWriter() {
       if (index < content.length) {
@@ -218,19 +223,37 @@
         setTimeout(typeWriter, 40);
       } else {
         imageGallery.style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("contact-info").style.display = "block";
+        }, 800);
       }
     }
 
-    document.getElementById("login-form").addEventListener("submit", function (e) {
+    document.getElementById("login-form").addEventListener("submit", function(e) {
       e.preventDefault();
-      const name = document.getElementById("username").value.trim();
-      if (name !== "") {
-        document.getElementById("login-section").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
-        document.getElementById("greeting-title").textContent = `Thân gửi ${name}`;
+      const inputName = document.getElementById("username").value.trim();
+
+      if (allowedNames.includes(inputName)) {
+        greetingTitle.textContent = `Thân gửi ${inputName}`;
+        loginSection.style.display = "none";
+        mainContent.style.display = "block";
+
+        content = nameToContent[inputName]; // Sửa chỗ này
+        textElement.innerHTML = "";
+        index = 0;
+
+        const prefix = nameToPrefix[inputName];
+        const images = document.querySelectorAll("#image-gallery img");
+        images[0].src = `${prefix}1.jpg`;
+        images[1].src = `${prefix}2.jpg`;
+
         typeWriter();
+      } else {
+        alert("Không có dữ liệu cho tên này 😥");
+        window.location.reload();
       }
     });
+
   </script>
 
 </body>
