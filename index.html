@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Một chút kỉ niệm đẹp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+      background-size: 600% 600%;
+      animation: gradientBG 15s ease infinite;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 600px;
+      text-align: left;
+      animation: fadeIn 2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px;
+      text-indent: 1em;
+      color: #e91e63;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .tri-an {
+      text-align: justify;
+      text-indent: 1em;
+      font-size: 20px;
+      color: #333;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .tri-an::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+      font-weight: bold;
+      color: #e91e63;
+    }
+
+    @keyframes blink {
+      0%   { opacity: 1; }
+      50%  { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 5s linear infinite;
+    }
+
+    @keyframes sparkle {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .image-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .image-gallery img {
+      flex: 1 1 calc(50% - 12px);
+      max-width: calc(50% - 12px);
+      height: auto;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s, opacity 0.3s;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form đăng nhập */
+    .login-container {
+      text-align: center;
+    }
+
+    #login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #e91e63;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #c2185b;
+    }
+
+    #main-content {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div id="login-section" class="login-container">
+      <h2>Cho xin cái tên 😎</h2>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Nhập tên... (Thanh Hải)" required>
+        <button type="submit">Đọc thư</button>
+      </form>
+    </div>
+
+    <div id="main-content">
+      <h1 id="greeting-title">Thân gửi ...</h1>
+      <p class="tri-an" id="typewriter-text"></p>
+      <div class="image-gallery" id="image-gallery" style="display: none;">
+        <img src="hinh1.jpg" alt="Ảnh kỷ niệm 1">
+        <img src="hinh2.jpg" alt="Ảnh kỷ niệm 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Hiệu ứng lấp lánh -->
+  <script>
+    for (let i = 0; i < 60; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = `${Math.random() * 100}vw`;
+      sparkle.style.top = `${Math.random() * 100}vh`;
+      sparkle.style.animationDuration = `${2 + Math.random() * 3}s`;
+      document.body.appendChild(sparkle);
+    }
+
+    const content = `Cảm ơn bạn vì đã luôn! 🌸💖`;
+    const textElement = document.getElementById("typewriter-text");
+    const imageGallery = document.getElementById("image-gallery");
+
+    let index = 0;
+
+    function typeWriter() {
+      if (index < content.length) {
+        textElement.innerHTML += content.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40);
+      } else {
+        imageGallery.style.display = "flex";
+      }
+    }
+
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("username").value.trim();
+      if (name !== "") {
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+        document.getElementById("greeting-title").textContent = `Thân gửi ${name}`;
+        typeWriter();
+      }
+    });
+  </script>
+
+</body>
+</html>
